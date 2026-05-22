@@ -1,6 +1,3 @@
-# WinPop-Release
-WinPop beta release downloads
-
 # WinPop
 
 **iPhoneからWindowsへ、ぱっと届く。すぐ使える。**
