@@ -1116,9 +1116,17 @@ h1 {
     display: block;
   }
 
+  .hero-title-action {
+    display: block;
+  }
+
+  .hero-title-use {
+    display: block;
+  }
+
   .pop-burst {
-    top: -0.25em;
-    left: -0.16em;
+    top: -0.34em;
+    left: -0.22em;
     width: 0.58em;
   }
 
