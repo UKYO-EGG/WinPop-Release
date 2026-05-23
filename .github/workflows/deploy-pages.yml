@@ -1,6 +1,7 @@
-﻿name: Deploy WinPop Pages
+﻿name: WinPop Pages を展開する
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
