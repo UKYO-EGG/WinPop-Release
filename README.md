@@ -1,95 +1,86 @@
-# WinPop
+# WinPop Beta
 
-**iPhoneからWindowsへ、ぱっと届く。すぐ使える。**
+WinPopは、iPhone側アプリ不要・ログイン不要・クラウド不要で、同じWi-Fi上のiPhoneからWindowsへ写真・ファイル・URL・テキストを送れるWindows向け転送ツールです。
 
-WinPopは、iPhoneからWindows PCへ  
-写真・ファイル・URL・テキストをかんたんに送れる無料β版アプリです。
+Official site: https://winpop.pages.dev/
 
-iPhone側に専用アプリを入れず、Safariなどのブラウザから利用できます。
+WinPop is a local iPhone-to-Windows handoff app. It is designed for beginner-friendly iPhone Windows file transfer, especially when AirDrop cannot be used with a Windows PC.
 
----
+- No iPhone app required
+- No forced login
+- No cloud upload required for the transfer flow
+- Uses the same Wi-Fi network
+- Connects by QR code
+- Supports files, photos, URLs, and text
+- Uses `WinPop Box` in your user folder as the default file location
+- Shows a first-launch guide with optional PC setup helpers for desktop shortcuts and Explorer access
 
-## 公式ページ
+## Download
+
+For the beta initial public release, WinPop is distributed as the installer only:
+
+```text
+Usually choose this: WinPop_Setup_0.9.0-beta.1.exe
+```
+
+Download from the official site:
 
 https://winpop.pages.dev/
 
-ダウンロード、使い方、ヘルプ、更新情報は公式ページから確認できます。
+An install-free zip is not published in the initial beta. It may be added later if users ask for it.
 
----
+## Windows SmartScreen Notice
 
-## 主な特徴
+WinPop is currently a free beta app from an individual developer. Because this early release is unsigned, Windows SmartScreen or other security software may show a warning during download, installation, or first launch.
 
-- **iPhone側アプリ不要**  
-  Safariなどのブラウザから使えます。
+If Windows shows "Windows protected your PC" and the "Run" button is not visible, choosing "More info" may show the "Run" button. Confirm that the installer came from the official site or the linked GitHub Release, review the warning, and decide whether to continue.
 
-- **ログイン不要**  
-  アカウント作成なしですぐ使えます。
+Do not disable Windows security features just to run WinPop.
 
-- **クラウド保存なし**  
-  同じWi-Fi内で、iPhoneとWindows PCを直接つないで送信します。
+## Development Start
 
-- **QRでかんたん接続**  
-  PC側に表示されたQRをiPhoneで読み取るだけで接続できます。
+1. Install Python dependencies:
 
-- **ファイルをPCの保存先フォルダへ直接保存**  
-  写真、PDF、URL、テキストなどをWindows側で受け取れます。
+```powershell
+python -m pip install -r requirements.txt
+```
 
-- **PCでコピーした内容をスマホ側から確認・コピー**  
-  PCでコピーしたテキストやURLを、iPhone側からすぐ確認できます。
+2. Start WinPop:
 
----
+```powershell
+python app.py
+```
 
-## ダウンロード
+3. Open the QR or connection URL on your iPhone while both devices are on the same local network.
 
-最新版は以下のGitHub Releasesから配布しています。
+On first launch, WinPop shows a short guide for QR connection, iPhone-to-PC sending, PC-to-iPhone handoff, and the optional iPhone Shortcut flow. The guide stores its seen flag in `%APPDATA%\WinPop\settings.json` and can be shown again from the desktop app.
 
-https://github.com/UKYO-EGG/WinPop-Release/releases
+You can also use:
 
-現在はWindows用インストーラー版を配布しています。
+```powershell
+.\start.bat
+.\diagnose.bat
+```
 
----
+## Local Config
 
-## β版について
+`config.json` is local generated state. It may contain access keys, shortcut tokens, device identity, save-folder paths, and other user-specific values.
 
-WinPopは現在、正式版前の無料β版です。
+Do not commit or distribute `config.json`.
+Use `config.example.json` as the safe reference file.
 
-環境によっては正常に動作しない場合があります。  
-不具合や気になった点があれば、今後の改善に反映していきます。
+If `config.json` is missing, WinPop regenerates it on startup.
 
----
+## Development Notes
 
-## 注意事項
+- Keep cache, logs, build outputs, and generated thumbnails out of Git.
+- Keep large features out of `app.py` and `desktop_app.py`; prefer focused `winpop_*.py` modules.
+- Follow `AGENTS.md` for Codex cleanup and token-budget rules.
+- See `DEVELOPER.md` for setup details.
 
-- Windows PC向けアプリです。
-- iPhoneとWindows PCが同じWi-Fi内にある状態での利用を想定しています。
-- 会社・学校などのネットワーク環境では、端末同士の通信が制限されている場合があります。
-- 初回起動時やインストール時に、Windows Defender SmartScreenやセキュリティソフトの確認画面が表示される場合があります。
-- コード署名は現在未対応のため、環境によって警告が出る可能性があります。
-- セキュリティソフトを無効化する案内はしていません。利用する場合は内容を確認したうえで判断してください。
+## Privacy
 
----
+WinPop is intended for same-network local transfer.
+Do not expose the local server to the public internet.
 
-## このリポジトリについて
-
-このリポジトリは、WinPopのβ版配布用リポジトリです。
-
-開発中のソースコード管理ではなく、主に以下の用途で使用しています。
-
-- WinPopのリリース配布
-- インストーラーの公開
-- バージョンごとの更新履歴管理
-- ダウンロード数の確認
-
----
-
-## 関連リンク
-
-- 公式ページ  
-  https://winpop.pages.dev/
-
-- Releases  
-  https://github.com/UKYO-EGG/WinPop-Release/releases
-
----
-
-© UKYO-EGG
+See `PRIVACY.md` for the current privacy note.

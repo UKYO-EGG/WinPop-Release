@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WinPop 統計</title>
+    <meta name="description" content="WinPopのGitHub Releasesダウンロード統計です。">
+    <link rel="icon" href="../assets/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="メインナビゲーション">
+        <a class="brand" href="/" aria-label="WinPop ホーム">
+          <img src="../assets/winpop-logo.png" alt="WinPop">
+        </a>
+        <div class="nav-links">
+          <a href="/download">ダウンロード</a>
+          <a href="/help">使い方</a>
+          <a href="/privacy">プライバシー</a>
+          <a class="nav-cta" href="/download">無料β版</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <div class="statement">
+            <p class="eyebrow">Stats</p>
+            <h1>WinPop 統計</h1>
+            <p>GitHub Releasesのダウンロード数を、1日数回更新して掲載しています。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="container">
+          <div id="stats-card" class="stats-card" aria-live="polite">
+            <p class="muted">統計情報を読み込んでいます。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>WinPop β</span>
+        <div class="footer-links">
+          <a href="/">ホーム</a>
+          <a href="/download">ダウンロード</a>
+          <a href="/releases">リリース情報</a>
+          <a href="/privacy">プライバシー</a>
+          <span class="footer-note">β版へのフィードバックを歓迎しています。</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var releaseUrl = "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.0-beta.1";
+        var card = document.getElementById("stats-card");
+
+        function escapeText(value) {
+          return String(value).replace(/[&<>"']/g, function (char) {
+            return {
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;"
+            }[char];
+          });
+        }
+
+        function formatDate(value) {
+          var date = new Date(value);
+          if (Number.isNaN(date.getTime())) {
+            return value;
+          }
+          return date.toLocaleString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZoneName: "short"
+          });
+        }
+
+        function showError() {
+          card.innerHTML =
+            '<h2>統計情報を取得できませんでした</h2>' +
+            '<p class="muted">時間をおいて再度お試しください。仮の数字は表示していません。</p>' +
+            '<div class="cta-row"><a class="button secondary" href="' + releaseUrl + '">GitHub Releaseを見る</a></div>';
+        }
+
+        fetch("/stats.json", { cache: "no-store" })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("stats.json not available");
+            }
+            return response.json();
+          })
+          .then(function (stats) {
+            if (typeof stats.download_count !== "number") {
+              throw new Error("download_count is missing");
+            }
+
+            var count = stats.download_count.toLocaleString("ja-JP");
+            var assetName = escapeText(stats.asset_name || "");
+            var version = escapeText(stats.version || "");
+            var updatedAt = escapeText(formatDate(stats.updated_at || ""));
+            var link = escapeText(stats.release_url || releaseUrl);
+
+            card.innerHTML =
+              '<p class="eyebrow">GitHub Releases download_count</p>' +
+              '<div class="stat-number">' + count + '</div>' +
+              '<p class="muted">累計ダウンロード数</p>' +
+              '<dl class="stats-list">' +
+              '<div><dt>対象ファイル</dt><dd>' + assetName + '</dd></div>' +
+              '<div><dt>バージョン</dt><dd>' + version + '</dd></div>' +
+              '<div><dt>最終更新</dt><dd>' + updatedAt + '</dd></div>' +
+              '</dl>' +
+              '<div class="cta-row"><a class="button secondary" href="' + link + '">GitHub Releaseを見る</a></div>';
+          })
+          .catch(showError);
+      })();
+    </script>
+  </body>
+</html>

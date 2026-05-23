@@ -1,0 +1,14 @@
+/manifest.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+
+/manifest.beta.active.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+
+/manifest.beta.closed.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+
+/manifest.beta.maintenance.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+
+/stats.json
+  Cache-Control: no-cache, max-age=300

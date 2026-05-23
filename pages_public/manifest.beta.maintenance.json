@@ -1,0 +1,17 @@
+{
+  "app": "WinPop",
+  "channel": "beta",
+  "product_latest_version": "1.0.0",
+  "latest_beta_version": "0.9.0-beta.1",
+  "beta_enabled": false,
+  "min_supported_beta_version": "0.9.0-beta.1",
+  "force_update": false,
+  "offline_grace_days": 3,
+  "message": "WinPop Betaは現在メンテナンス中です。",
+  "download_url": "https://winpop.pages.dev/download/",
+  "release_notes_url": "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.0-beta.1",
+  "stats_url": "https://winpop.pages.dev/stats",
+  "changelog": [
+    "WinPop Betaは現在メンテナンス中です"
+  ]
+}
