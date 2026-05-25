@@ -1,13 +1,13 @@
 {
   "version": "0.9.1-beta.1",
   "asset_name": "WinPop_Setup_0.9.1-beta.1.exe",
-  "download_count": 14,
-  "total_downloads": 14,
-  "totalDownloadCount": 14,
+  "download_count": 19,
+  "total_downloads": 19,
+  "totalDownloadCount": 19,
   "latest_asset_name": "WinPop_Setup_0.9.1-beta.1.exe",
-  "latest_asset_download_count": 0,
+  "latest_asset_download_count": 5,
   "release_url": "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.1-beta.1",
   "download_url": "https://github.com/UKYO-EGG/WinPop-Release/releases/download/v0.9.1-beta.1/WinPop_Setup_0.9.1-beta.1.exe",
-  "updated_at": "2026-05-25T12:03:18Z",
+  "updated_at": "2026-05-25T19:18:08Z",
   "source": "GitHub Releases WinPop_Setup_*.exe total download_count"
 }

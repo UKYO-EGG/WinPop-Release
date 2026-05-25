@@ -124,6 +124,10 @@ def build_stats(assets: list[dict[str, Any]]) -> dict[str, Any]:
 
     latest_asset = max(assets, key=sort_key)
     total_downloads = sum(asset["download_count"] for asset in assets)
+    if total_downloads <= 0:
+        raise RuntimeError(
+            "Total WinPop_Setup_*.exe download_count is 0; refusing to overwrite stats.json"
+        )
     latest_version = str(latest_asset["tag_name"]).removeprefix("v")
 
     return {
