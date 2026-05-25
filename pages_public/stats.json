@@ -2,6 +2,8 @@
   "version": "0.9.1-beta.1",
   "asset_name": "WinPop_Setup_0.9.1-beta.1.exe",
   "download_count": 14,
+  "total_downloads": 14,
+  "totalDownloadCount": 14,
   "release_url": "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.1-beta.1",
   "download_url": "https://github.com/UKYO-EGG/WinPop-Release/releases/download/v0.9.1-beta.1/WinPop_Setup_0.9.1-beta.1.exe",
   "updated_at": "2026-05-25T02:44:49Z",

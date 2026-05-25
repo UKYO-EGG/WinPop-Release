@@ -104,11 +104,18 @@
             return response.json();
           })
           .then(function (stats) {
-            if (typeof stats.download_count !== "number") {
-              throw new Error("download_count is missing");
+            var totalCount = stats.total_downloads;
+            if (typeof totalCount !== "number") {
+              totalCount = stats.totalDownloadCount;
+            }
+            if (typeof totalCount !== "number") {
+              totalCount = stats.download_count;
+            }
+            if (typeof totalCount !== "number") {
+              throw new Error("total download_count is missing");
             }
 
-            var count = stats.download_count.toLocaleString("ja-JP");
+            var count = totalCount.toLocaleString("ja-JP");
             var assetName = escapeText(stats.asset_name || "");
             var version = escapeText(stats.version || "");
             var updatedAt = escapeText(formatDate(stats.updated_at || ""));
