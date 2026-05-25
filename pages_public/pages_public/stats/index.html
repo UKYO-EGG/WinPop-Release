@@ -59,7 +59,7 @@
 
     <script>
       (function () {
-        var releaseUrl = "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.0-beta.1";
+        var releaseUrl = "https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.1-beta.1";
         var card = document.getElementById("stats-card");
 
         function escapeText(value) {
@@ -115,7 +115,7 @@
             var link = escapeText(stats.release_url || releaseUrl);
 
             card.innerHTML =
-              '<p class="eyebrow">GitHub Releases download_count</p>' +
+              '<p class="eyebrow">GitHub Releases WinPop_Setup_*.exe total download_count</p>' +
               '<div class="stat-number">' + count + '</div>' +
               '<p class="muted">累計ダウンロード数</p>' +
               '<dl class="stats-list">' +

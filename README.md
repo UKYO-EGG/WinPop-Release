@@ -20,7 +20,7 @@ WinPop is a local iPhone-to-Windows handoff app. It is designed for beginner-fri
 For the beta initial public release, WinPop is distributed as the installer only:
 
 ```text
-Usually choose this: WinPop_Setup_0.9.0-beta.1.exe
+Usually choose this: WinPop_Setup_0.9.1-beta.1.exe
 ```
 
 Download from the official site:
