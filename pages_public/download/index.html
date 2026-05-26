@@ -41,7 +41,7 @@
             <div class="page-hero-copy">
               <p class="eyebrow">WinPop 無料β版ダウンロード</p>
               <h1>Windows用インストーラーをダウンロード</h1>
-              <p>WinPopは、iPhoneからWindows PCへ写真・ファイル・URL・テキストを送れる無料β版アプリです。ダウンロード前に、インストール時の確認事項を表示します。</p>
+              <p>WinPopは、iPhoneからWindows PCへ写真・ファイル・リンク・テキストを送れる無料β版アプリです。Windowsで開いて、確認事項を読んだうえでダウンロードしてください。</p>
               <div class="hero-badges" aria-label="WinPopの特徴">
                 <span>iPhone側アプリ不要</span>
                 <span>ログイン不要</span>
@@ -88,11 +88,11 @@
             <span class="info-card__label">01</span>
             <h2>配布ファイル</h2>
             <p><span class="file-name">WinPop_Setup_0.9.1-beta.1.exe</span></p>
-            <p>β初期公開は、Windows用インストーラー版のみです。</p>
+            <p>現在のβ版は、Windows用インストーラーとして配布しています。</p>
           </article>
           <article class="info-card">
             <span class="info-card__label">02</span>
-            <h2>使う前に確認してください</h2>
+            <h2>使う前に確認</h2>
             <ul class="list">
               <li>Windows PC向けアプリです。</li>
               <li>iPhoneとWindows PCが同じWi-Fi内にある状態で使います。</li>
@@ -104,21 +104,44 @@
             <span class="info-card__label">03</span>
             <h2>スマホで見ている方へ</h2>
             <p>スマホでこのページを見ている場合は、Windows PCでこのページを開いてダウンロードしてください。</p>
-            <p>WindowsでWinPopを起動し、iPhoneでQRコードを読み取ると、ログイン不要で送信画面を開けます。</p>
+            <p>インストール後にWinPopを起動し、iPhoneでQRコードを読み取ると送信画面を開けます。</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Start guide</p>
+            <h2>ダウンロード後にやること</h2>
+            <p>最初に必要な操作だけを、短い手順で確認できます。</p>
+          </div>
+          <div class="download-steps">
+            <article class="download-step">
+              <h3>インストーラーを実行</h3>
+              <p>ダウンロードしたファイル名を確認してから、Windows PCで実行します。</p>
+            </article>
+            <article class="download-step">
+              <h3>WinPopを起動</h3>
+              <p>受け取りたいPCでWinPopを開き、画面に表示されるQRコードを確認します。</p>
+            </article>
+            <article class="download-step">
+              <h3>iPhoneでQRを読み取る</h3>
+              <p>iPhoneのカメラやSafariで開き、写真・ファイル・URL・テキストを送ります。</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="section quiet-band">
         <div class="container">
           <div class="rich-panel warning">
-            <h2>Windows SmartScreenなどの警告について</h2>
+            <h2>Windowsの警告が出る場合があります</h2>
             <p>WinPopは現在、個人開発の無料β版です。リリース直後の未署名アプリのため、Windows SmartScreenなどの警告が表示される場合があります。</p>
             <p>警告画面で「実行」ボタンが表示されない場合は、画面内の「詳細情報」を選ぶと「実行」が表示される場合があります。公式サイトからダウンロードしたファイルであることを確認したうえで、利用するか判断してください。</p>
             <ul class="list">
               <li>会社・学校などの管理されたPCでは、管理者のセキュリティポリシーにより実行できない場合があります。</li>
               <li>不安がある場合は無理に進めず、公開ページ、リリース情報、配布元を確認してください。</li>
-              <li>正式版に向けて、配布方法や署名対応も改善を検討しています。</li>
             </ul>
           </div>
         </div>
@@ -127,15 +150,16 @@
       <section class="section">
         <div class="container two-column">
           <div class="rich-panel">
-            <h2>iPhone側アプリ不要で使えます。</h2>
+            <h2>iPhone側アプリ不要で使えます</h2>
             <p>iPhoneからWindowsにアプリなしで送りたい場合、WinPopはSafariなどのブラウザから使えます。写真・ファイル・URL・テキストを同じWi-Fi上でWindows PCへ送れます。</p>
           </div>
           <div class="rich-panel">
-            <h2>関連する使い方。</h2>
-            <div class="internal-links">
+            <h2>関連する使い方</h2>
+            <div class="internal-links compact-links">
               <a href="/iphone-windows-file-transfer/">iPhoneからWindowsへファイルを送る方法</a>
-              <a href="/airdrop-alternative-windows/">WindowsでAirDropの代わりに使う方法</a>
-              <a href="/iphone-windows-no-app-transfer/">iPhoneにアプリを入れずに送る方法</a>
+              <a href="/help/">基本の使い方</a>
+              <a href="/releases/">リリース情報</a>
+              <a href="/stats/">ダウンロード統計</a>
             </div>
           </div>
         </div>
@@ -151,14 +175,14 @@
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <span>WinPop β</span>
-        <div class="footer-links">
+        <nav class="footer-links" aria-label="関連ページ">
           <a href="/">ホーム</a>
+          <a class="footer-link--active" aria-current="page" href="/download/">ダウンロード</a>
           <a href="/releases/">リリース情報</a>
-          <a href="/help/">使い方</a>
+          <a href="/stats/">統計</a>
           <a href="/privacy/">プライバシー</a>
-          <span class="footer-note">個人開発の無料β版です。</span>
-        </div>
+        </nav>
+        <p class="footer-note">β版へのフィードバックを歓迎しています。</p>
       </div>
     </footer>
 

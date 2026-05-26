@@ -1,0 +1,5 @@
+/pages_public/* /:splat 301
+/airdrop-alternative-windows/ /iphone-windows-file-transfer/ 301
+/airdrop-alternative-windows /iphone-windows-file-transfer/ 301
+/iphone-windows-no-app-transfer/ /iphone-windows-file-transfer/ 301
+/iphone-windows-no-app-transfer /iphone-windows-file-transfer/ 301

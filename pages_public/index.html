@@ -121,7 +121,7 @@
               <span></span>
               <span></span>
             </div>
-            <video class="home-video" controls playsinline preload="metadata" poster="assets/winpop-feature-demo-poster.jpg">
+            <video class="home-video" controls playsinline preload="auto" poster="assets/winpop-feature-demo-poster.jpg">
               <source src="videos/winpop-feature-demo.mp4" type="video/mp4">
               お使いの環境では動画を再生できません。WinPopは、iPhoneでQR接続して写真・ファイル・URL・テキストをWindowsへ送れる転送ツールです。
             </video>
@@ -206,22 +206,21 @@
 
       <section class="home-links" aria-label="関連ページ">
         <a href="/iphone-windows-file-transfer/">iPhoneからWindowsへ送る方法</a>
-        <a href="/airdrop-alternative-windows/">WindowsでAirDropの代わりに使う方法</a>
-        <a href="/iphone-windows-no-app-transfer/">iPhoneにアプリを入れずに送る方法</a>
+        <a href="/releases/">リリース情報</a>
+        <a href="/stats/">ダウンロード統計</a>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <span>WinPop β</span>
-        <div class="footer-links">
+        <nav class="footer-links" aria-label="関連ページ">
+          <a class="footer-link--active" aria-current="page" href="/">ホーム</a>
           <a href="/download/">ダウンロード</a>
           <a href="/releases/">リリース情報</a>
           <a href="/stats/">統計</a>
-          <a href="/help/">使い方</a>
           <a href="/privacy/">プライバシー</a>
-          <span class="footer-note">個人開発の無料ベータ版です。</span>
-        </div>
+        </nav>
+        <p class="footer-note">β版へのフィードバックを歓迎しています。</p>
       </div>
     </footer>
 

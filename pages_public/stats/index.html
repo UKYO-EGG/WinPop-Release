@@ -16,10 +16,10 @@
           <img src="../assets/winpop-logo.png" alt="WinPop">
         </a>
         <div class="nav-links">
-          <a href="/download">ダウンロード</a>
-          <a href="/help">使い方</a>
-          <a href="/privacy">プライバシー</a>
-          <a class="nav-cta" href="/download">無料β版</a>
+          <a href="/download/">ダウンロード</a>
+          <a href="/help/">使い方</a>
+          <a href="/privacy/">プライバシー</a>
+          <a class="nav-cta" href="/download/">無料β版</a>
         </div>
       </nav>
     </header>
@@ -31,7 +31,7 @@
             <div class="page-hero-copy">
               <p class="eyebrow">Stats</p>
               <h1>WinPop 統計</h1>
-              <p>GitHub Releasesのダウンロード数を、1日数回更新して掲載しています。</p>
+              <p>GitHub Releasesの公開データをもとに、WinPopの累計ダウンロード数と更新時刻を掲載しています。</p>
               <div class="hero-badges" aria-label="統計ページの内容">
                 <span>累計ダウンロード</span>
                 <span>対象ファイル</span>
@@ -70,18 +70,41 @@
           </div>
         </div>
       </section>
+
+      <section class="section quiet-band">
+        <div class="container">
+          <div class="data-note">
+            <p class="eyebrow">Data policy</p>
+            <h2>表示している数字について</h2>
+            <div class="stat-note-grid">
+              <article class="stat-note">
+                <strong>対象</strong>
+                <span>GitHub Releases上の <code>WinPop_Setup_*.exe</code> のダウンロード数を対象にしています。</span>
+              </article>
+              <article class="stat-note">
+                <strong>累計</strong>
+                <span>最新ファイル単体ではなく、対象ファイルすべての <code>download_count</code> 合算値を表示します。</span>
+              </article>
+              <article class="stat-note">
+                <strong>更新</strong>
+                <span>自動更新ワークフローとデプロイ前生成で、公開前に <code>stats.json</code> を再生成します。</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <span>WinPop β</span>
-        <div class="footer-links">
+        <nav class="footer-links" aria-label="関連ページ">
           <a href="/">ホーム</a>
-          <a href="/download">ダウンロード</a>
-          <a href="/releases">リリース情報</a>
-          <a href="/privacy">プライバシー</a>
-          <span class="footer-note">β版へのフィードバックを歓迎しています。</span>
-        </div>
+          <a href="/download/">ダウンロード</a>
+          <a href="/releases/">リリース情報</a>
+          <a class="footer-link--active" aria-current="page" href="/stats/">統計</a>
+          <a href="/privacy/">プライバシー</a>
+        </nav>
+        <p class="footer-note">β版へのフィードバックを歓迎しています。</p>
       </div>
     </footer>
 
@@ -124,6 +147,71 @@
             '<div class="cta-row"><a class="button secondary" href="' + releaseUrl + '">GitHub Releaseを見る</a></div>';
         }
 
+        function getTotalCount(stats) {
+          var totalCount = stats.total_downloads;
+          if (typeof totalCount !== "number") {
+            totalCount = stats.totalDownloadCount;
+          }
+          if (typeof totalCount !== "number") {
+            totalCount = stats.download_count;
+          }
+          if (typeof totalCount !== "number") {
+            throw new Error("total download_count is missing");
+          }
+          return totalCount;
+        }
+
+        function renderCount(target, value) {
+          target.textContent = Math.max(0, Math.floor(value)).toLocaleString("ja-JP");
+        }
+
+        function animateCount(target, finalValue) {
+          var exactValue = Math.max(0, Math.floor(finalValue));
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (reduceMotion || exactValue === 0 || !("requestAnimationFrame" in window)) {
+            renderCount(target, exactValue);
+            return;
+          }
+
+          var duration = 1000;
+          var start = null;
+          var finished = false;
+          target.classList.add("is-counting");
+
+          function finish() {
+            if (finished) {
+              return;
+            }
+            finished = true;
+            renderCount(target, exactValue);
+            target.classList.remove("is-counting");
+          }
+
+          var fallbackTimer = window.setTimeout(finish, duration + 160);
+
+          function step(timestamp) {
+            if (finished) {
+              return;
+            }
+            if (start === null) {
+              start = timestamp;
+            }
+            var progress = Math.min((timestamp - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            renderCount(target, exactValue * eased);
+
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+              return;
+            }
+
+            window.clearTimeout(fallbackTimer);
+            finish();
+          }
+
+          window.requestAnimationFrame(step);
+        }
+
         fetch("/stats.json", { cache: "no-store" })
           .then(function (response) {
             if (!response.ok) {
@@ -132,33 +220,25 @@
             return response.json();
           })
           .then(function (stats) {
-            var totalCount = stats.total_downloads;
-            if (typeof totalCount !== "number") {
-              totalCount = stats.totalDownloadCount;
-            }
-            if (typeof totalCount !== "number") {
-              totalCount = stats.download_count;
-            }
-            if (typeof totalCount !== "number") {
-              throw new Error("total download_count is missing");
-            }
-
-            var count = totalCount.toLocaleString("ja-JP");
+            var totalCount = getTotalCount(stats);
             var assetName = escapeText(stats.asset_name || "");
             var version = escapeText(stats.version || "");
             var updatedAt = escapeText(formatDate(stats.updated_at || ""));
             var link = escapeText(stats.release_url || releaseUrl);
 
             card.innerHTML =
-              '<p class="eyebrow">GitHub Releases WinPop_Setup_*.exe total download_count</p>' +
-              '<div class="stat-number">' + count + '</div>' +
-              '<p class="muted">累計ダウンロード数</p>' +
+              '<p class="eyebrow">GitHub Releases の公開データ</p>' +
+              '<p class="stat-label">累計ダウンロード</p>' +
+              '<div class="stat-number" data-final-count="' + totalCount + '">0</div>' +
+              '<p class="stats-source">対象ファイルすべての download_count 合算値です。最新ファイル単体の値は累計として使っていません。</p>' +
               '<dl class="stats-list">' +
               '<div><dt>対象ファイル</dt><dd>' + assetName + '</dd></div>' +
               '<div><dt>バージョン</dt><dd>' + version + '</dd></div>' +
               '<div><dt>最終更新</dt><dd>' + updatedAt + '</dd></div>' +
               '</dl>' +
               '<div class="cta-row"><a class="button secondary" href="' + link + '">GitHub Releaseを見る</a></div>';
+
+            animateCount(card.querySelector(".stat-number"), totalCount);
           })
           .catch(showError);
       })();

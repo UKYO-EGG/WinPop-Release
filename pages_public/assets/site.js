@@ -1,4 +1,105 @@
 (function () {
+  var video = document.querySelector(".home-video");
+  if (!video || !window.fetch || !window.URL || !window.URL.createObjectURL) {
+    return;
+  }
+
+  var source = video.querySelector("source");
+  var initialSource = source && source.getAttribute("src");
+  var sourceUrl = initialSource || video.currentSrc || video.getAttribute("src");
+  if (!sourceUrl) {
+    return;
+  }
+
+  var absoluteUrl;
+  try {
+    absoluteUrl = new URL(sourceUrl, document.baseURI).href;
+  } catch (error) {
+    return;
+  }
+
+  var fallbackStarted = false;
+  var objectUrl = null;
+
+  function hasSeekableDuration() {
+    if (!Number.isFinite(video.duration) || video.duration <= 0) {
+      return true;
+    }
+
+    for (var index = 0; index < video.seekable.length; index += 1) {
+      if (video.seekable.end(index) >= video.duration - 0.75) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function revokeObjectUrl() {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    }
+  }
+
+  function enableBlobSeekFallback() {
+    if (fallbackStarted || video.dataset.seekFallbackReady === "true") {
+      return;
+    }
+
+    fallbackStarted = true;
+    var resumeAt = video.currentTime || 0;
+
+    fetch(absoluteUrl, { cache: "force-cache" })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("video fetch failed");
+        }
+        return response.blob();
+      })
+      .then(function (blob) {
+        revokeObjectUrl();
+        objectUrl = URL.createObjectURL(blob);
+        video.dataset.seekFallbackReady = "true";
+        video.pause();
+        if (source) {
+          source.removeAttribute("src");
+        }
+        video.src = objectUrl;
+        video.load();
+        video.addEventListener(
+          "loadedmetadata",
+          function () {
+            if (resumeAt > 0 && Number.isFinite(video.duration)) {
+              video.currentTime = Math.min(resumeAt, Math.max(0, video.duration - 0.5));
+            }
+          },
+          { once: true }
+        );
+      })
+      .catch(function () {
+        video.dataset.seekFallbackReady = "error";
+      });
+  }
+
+  function checkSeekability() {
+    window.setTimeout(function () {
+      if (!hasSeekableDuration()) {
+        enableBlobSeekFallback();
+      }
+    }, 600);
+  }
+
+  if (video.readyState >= 1) {
+    checkSeekability();
+  } else {
+    video.addEventListener("loadedmetadata", checkSeekability, { once: true });
+  }
+
+  window.addEventListener("pagehide", revokeObjectUrl, { once: true });
+})();
+
+(function () {
   var modal = document.getElementById("download-modal");
   if (!modal) {
     return;
@@ -96,6 +197,18 @@
       ".info-card",
       ".rich-panel",
       ".article-summary",
+      ".article-content",
+      ".content-block",
+      ".page-cta-panel",
+      ".data-note",
+      ".release-overview",
+      ".release-note",
+      ".download-step",
+      ".method-item",
+      ".trust-item",
+      ".quick-step",
+      ".stat-note",
+      ".release-card",
       ".release-feature",
       ".page-hero .statement",
       ".page-hero .article-panel",
