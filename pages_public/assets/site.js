@@ -77,3 +77,86 @@
     trapFocus(event);
   });
 })();
+
+(function () {
+  var header = document.querySelector(".site-header");
+  var revealTargets = document.querySelectorAll(
+    [
+      ".home-hero__copy",
+      ".home-video-shell",
+      ".home-strip article",
+      ".home-section__heading",
+      ".home-card",
+      ".home-compare__copy",
+      ".home-checklist span",
+      ".home-note",
+      ".home-links a",
+      ".page-hero-copy",
+      ".transfer-visual",
+      ".info-card",
+      ".rich-panel",
+      ".article-summary",
+      ".release-feature",
+      ".page-hero .statement",
+      ".page-hero .article-panel",
+      ".section-heading",
+      ".feature-demo-panel",
+      ".demo-point",
+      ".card",
+      ".statement:not(.plain)",
+      ".article-panel",
+      ".step",
+      ".faq-item",
+      ".stats-card",
+      ".release-item"
+    ].join(",")
+  );
+
+  function updateHeader() {
+    if (!header) {
+      return;
+    }
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+
+  if (revealTargets.length === 0 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  document.documentElement.classList.add("reveal-ready");
+
+  Array.prototype.forEach.call(revealTargets, function (item, index) {
+    item.classList.add("reveal-item");
+    item.style.setProperty("--reveal-delay", Math.min(index % 6, 5) * 55 + "ms");
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    Array.prototype.forEach.call(revealTargets, function (item) {
+      item.classList.add("is-visible");
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.12
+    }
+  );
+
+  Array.prototype.forEach.call(revealTargets, function (item) {
+    observer.observe(item);
+  });
+})();

@@ -2,11 +2,15 @@ name: Update release stats
 
 on:
   schedule:
-    - cron: "0 0,6,12,18 * * *"
+    - cron: "17 0,6,12,18 * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: winpop-pages-production
+  cancel-in-progress: true
 
 jobs:
   update-stats:

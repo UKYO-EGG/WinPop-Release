@@ -24,13 +24,41 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main class="page-main">
+      <section class="page-hero page-hero-rich">
         <div class="container">
-          <div class="statement">
-            <p class="eyebrow">Help</p>
-            <h1>はじめてでも、短い手順で使えます。</h1>
-            <p>WinPopはWindows PCで起動し、iPhoneのブラウザから送るアプリです。どちらも同じWi-Fiにつながっていることを確認してから始めてください。</p>
+          <div class="page-hero-grid">
+            <div class="page-hero-copy">
+              <p class="eyebrow">Help</p>
+              <h1>はじめてでも、短い手順で使えます。</h1>
+              <p>WinPopはWindows PCで起動し、iPhoneのブラウザから送るアプリです。どちらも同じWi-Fiにつながっていることを確認してから始めてください。</p>
+              <div class="hero-badges" aria-label="使い始めのポイント">
+                <span>Windowsで起動</span>
+                <span>iPhoneでQR</span>
+                <span>ブラウザから送信</span>
+              </div>
+            </div>
+            <div class="transfer-visual" aria-hidden="true">
+              <div class="visual-device">
+                <div class="visual-device__screen">
+                  <div class="visual-device__notch"></div>
+                  <strong>Safari</strong>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                </div>
+              </div>
+              <div class="visual-route">QR</div>
+              <div class="visual-window">
+                <div class="visual-window__bar"><span></span><span></span><span></span></div>
+                <h3>WinPop</h3>
+                <p>PCで受け取り、保存先フォルダで確認。</p>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+              </div>
+              <div class="visual-chip">同じWi-Fi<small>iPhoneとWindowsを近くで接続</small></div>
+            </div>
           </div>
         </div>
       </section>
@@ -83,7 +111,7 @@
 
       <section class="section quiet-band">
         <div class="container two-column">
-          <div class="statement">
+          <div class="rich-panel">
             <h2>つながらない時</h2>
             <ul class="list">
               <li>PCとiPhoneが同じWi-Fiにつながっているか確認します。</li>
@@ -92,7 +120,7 @@
               <li>WinPopを再起動して、QRを再表示します。</li>
             </ul>
           </div>
-          <div class="statement">
+          <div class="rich-panel">
             <h2>スマホ側はブラウザで使えます。</h2>
             <p>iPhoneに専用アプリを入れる必要はありません。Windows PCにWinPopをインストールし、iPhoneはSafariなどのブラウザから利用します。</p>
           </div>
@@ -101,7 +129,7 @@
 
       <section class="section compact">
         <div class="container">
-          <div class="statement">
+          <div class="rich-panel warning">
             <h2>セキュリティ警告が表示された時</h2>
             <p>WinPopは個人開発の無料β版のため、現時点ではコード署名証明書による署名を行っていません。</p>
             <p>そのため、初回起動時にWindows Defender SmartScreenやセキュリティソフトの確認画面が表示される場合があります。会社・学校などのPCでは、管理者ポリシーにより実行できないこともあります。</p>
@@ -122,5 +150,6 @@
         </div>
       </div>
     </footer>
+    <script src="../assets/site.js" defer></script>
   </body>
 </html>

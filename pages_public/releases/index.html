@@ -24,13 +24,45 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main class="page-main">
+      <section class="page-hero page-hero-rich">
         <div class="container">
-          <div class="statement">
-            <p class="eyebrow">Releases</p>
-            <h1>WinPop リリース情報</h1>
-            <p>無料β版の公開状況と、主な機能を掲載します。</p>
+          <div class="page-hero-grid">
+            <div class="page-hero-copy">
+              <p class="eyebrow">Releases</p>
+              <h1>WinPop リリース情報</h1>
+              <p>無料β版の公開状況と、主な機能を掲載します。</p>
+              <div class="hero-badges" aria-label="リリース情報の要点">
+                <span>0.9.1 beta.1</span>
+                <span>Windowsインストーラー</span>
+                <span>無料β版</span>
+              </div>
+              <div class="cta-row">
+                <a class="button" href="https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.1-beta.1">GitHub Releaseページを開く</a>
+                <a class="button secondary" href="/download/">ダウンロードページへ</a>
+              </div>
+            </div>
+            <div class="transfer-visual" aria-hidden="true">
+              <div class="visual-device">
+                <div class="visual-device__screen">
+                  <div class="visual-device__notch"></div>
+                  <strong>β</strong>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                </div>
+              </div>
+              <div class="visual-route">v0.9.1</div>
+              <div class="visual-window">
+                <div class="visual-window__bar"><span></span><span></span><span></span></div>
+                <h3>Release Notes</h3>
+                <p>QR接続、ファイル送信、Libraryなどを含む初期β版。</p>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+              </div>
+              <div class="visual-chip">Published<small>WinPop_Setup_0.9.1-beta.1.exe</small></div>
+            </div>
           </div>
         </div>
       </section>
@@ -40,10 +72,6 @@
           <article class="release-item">
             <h2>WinPop 0.9.1 beta.1</h2>
             <p class="muted">公開済みの無料β版です。</p>
-            <div class="cta-row">
-              <a class="button" href="https://github.com/UKYO-EGG/WinPop-Release/releases/tag/v0.9.1-beta.1">GitHub Releaseページを開く</a>
-              <a class="button secondary" href="/download">ダウンロードページへ</a>
-            </div>
             <div class="status-box">
               <strong>配布ファイル</strong><br>
               <span class="file-name">WinPop_Setup_0.9.1-beta.1.exe</span>
@@ -55,15 +83,15 @@
               <p class="small-note">会社・学校などの管理されたPCでは、管理者ポリシーにより実行できない場合があります。不安な場合は無理に実行せず、公開ページ・リリース情報・配布元を確認してください。正式版に向けて、配布方法や署名対応も改善を検討しています。</p>
             </div>
             <h3>主な機能</h3>
-            <ul class="list">
-              <li>QR接続</li>
-              <li>iPhone側アプリ不要</li>
-              <li>ファイル/URL/テキスト送信</li>
-              <li>PCからコピーした内容の確認</li>
-              <li>Library</li>
-              <li>保存先フォルダ変更</li>
-              <li>ゲストQR</li>
-            </ul>
+            <div class="release-features" aria-label="主な機能">
+              <span class="release-feature">QR接続</span>
+              <span class="release-feature">iPhone側アプリ不要</span>
+              <span class="release-feature">ファイル/URL/テキスト送信</span>
+              <span class="release-feature">PCからコピーした内容の確認</span>
+              <span class="release-feature">Library</span>
+              <span class="release-feature">保存先フォルダ変更</span>
+              <span class="release-feature">ゲストQR</span>
+            </div>
           </article>
         </div>
       </section>
@@ -80,5 +108,6 @@
         </div>
       </div>
     </footer>
+    <script src="../assets/site.js" defer></script>
   </body>
 </html>

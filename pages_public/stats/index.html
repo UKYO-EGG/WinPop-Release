@@ -24,13 +24,41 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main class="page-main">
+      <section class="page-hero page-hero-rich">
         <div class="container">
-          <div class="statement">
-            <p class="eyebrow">Stats</p>
-            <h1>WinPop 統計</h1>
-            <p>GitHub Releasesのダウンロード数を、1日数回更新して掲載しています。</p>
+          <div class="page-hero-grid">
+            <div class="page-hero-copy">
+              <p class="eyebrow">Stats</p>
+              <h1>WinPop 統計</h1>
+              <p>GitHub Releasesのダウンロード数を、1日数回更新して掲載しています。</p>
+              <div class="hero-badges" aria-label="統計ページの内容">
+                <span>累計ダウンロード</span>
+                <span>対象ファイル</span>
+                <span>最終更新</span>
+              </div>
+            </div>
+            <div class="transfer-visual" aria-hidden="true">
+              <div class="visual-device">
+                <div class="visual-device__screen">
+                  <div class="visual-device__notch"></div>
+                  <strong>Release</strong>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                  <span class="visual-device__line"></span>
+                </div>
+              </div>
+              <div class="visual-route">COUNT</div>
+              <div class="visual-window">
+                <div class="visual-window__bar"><span></span><span></span><span></span></div>
+                <h3>Download Stats</h3>
+                <p>公開データから集計し、サイト上で表示。</p>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+                <span class="visual-window__line"></span>
+              </div>
+              <div class="visual-chip">No dummy data<small>取得できない時は仮の数字を出しません</small></div>
+            </div>
           </div>
         </div>
       </section>
@@ -135,5 +163,6 @@
           .catch(showError);
       })();
     </script>
+    <script src="../assets/site.js" defer></script>
   </body>
 </html>
