@@ -3109,7 +3109,7 @@ h1 {
   .home-note,
   .home-links {
     width: min(calc(100% - 32px), 358px);
-    margin-left: 16px;
+    margin-left: auto;
     margin-right: auto;
   }
 
@@ -3130,9 +3130,6 @@ h1 {
     gap: 10px 22px;
   }
 
-  .footer-links a:last-child {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 420px) {
